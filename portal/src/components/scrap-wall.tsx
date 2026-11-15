@@ -62,49 +62,49 @@ export function ScrapWall() {
 
   return (
     <section className="wall" aria-label="wall of scraps">
-      <h2>the wall</h2>
       <ul className="scraps">
-        {wall.map((scrap, index) => (
-          <li key={scrap.id} className={`scrap tilt-${index % 3}`}>
-            {scrap.placeholder ? <span className="tag">placeholder</span> : null}
-            <p>{scrap.text}</p>
-            <p className="from">{scrap.from}</p>
-          </li>
-        ))}
-        {pins.map((scrap, index) => (
-          <li key={scrap.id} className={`scrap tilt-${index % 3}`}>
-            <span className="tag">this browser</span>
+        {pins.map((scrap) => (
+          <li key={scrap.id} className="scrap is-yours">
+            <span className="tag real">this browser</span>
             <p>{scrap.text}</p>
             <button type="button" className="unpin" onClick={() => write(pins.filter((item) => item.id !== scrap.id))}>
               take it down
             </button>
           </li>
         ))}
+        {wall.map((scrap) => (
+          <li key={scrap.id} className="scrap">
+            {scrap.placeholder ? <span className="tag">placeholder</span> : null}
+            <p>{scrap.text}</p>
+            <p className="from">{scrap.from}</p>
+          </li>
+        ))}
       </ul>
       {broken ? (
         <p className="field-error" role="alert">
-          the pins in this browser could not be read.
+          the pins in this browser could not be read.{" "}
           <button type="button" className="unpin" onClick={() => write([])}>
             clear them
           </button>
         </p>
       ) : null}
       <form onSubmit={onPin} className="pin-form">
-        <label>
-          pin a scrap here. it stays on this machine.
+        <label htmlFor="pin-line">pin a scrap of your own. it stays on this machine.</label>
+        <div className="pin-row">
           <input
+            id="pin-line"
             value={draft}
             maxLength={140}
             onChange={(event) => setDraft(event.target.value)}
             placeholder="a line, a lyric, a thing you're making"
           />
-        </label>
+          <button type="submit">pin it</button>
+        </div>
         {error ? (
           <p className="field-error" role="alert">
             {error}
           </p>
         ) : null}
-        <button type="submit">pin it</button>
       </form>
     </section>
   );

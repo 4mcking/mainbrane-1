@@ -19,8 +19,9 @@ export function Hallway() {
             key={room.href}
             href={room.href}
             aria-current={active ? "page" : undefined}
-            className={active ? "door is-here" : "door"}
+            className={`door tone-${room.tone}${active ? " is-here" : ""}`}
           >
+            <span className="hexdot" aria-hidden="true" />
             {room.label}
           </Link>
         );

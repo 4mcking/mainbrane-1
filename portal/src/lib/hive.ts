@@ -11,14 +11,29 @@ export const doors = [
   { label: "heymcking@gmail.com", href: "mailto:heymcking@gmail.com" },
 ] as const;
 
-export const hallway = [
-  { href: "/", label: "desk" },
-  { href: "/sound", label: "sound" },
-  { href: "/writing", label: "writing" },
-  { href: "/lab", label: "lab" },
-  { href: "/archive", label: "archive" },
-  { href: "/now", label: "now" },
-] as const;
+export type Tone = "hive" | "sound" | "writing" | "lab" | "archive" | "now" | "wall";
+
+export type RoomDoor = {
+  href: string;
+  label: string;
+  tone: Tone;
+  whisper: string;
+};
+
+// Order matters: it is the ring of cells around the host, clockwise from the top.
+export const rooms: RoomDoor[] = [
+  { href: "/sound", label: "sound", tone: "sound", whisper: "sleeves first. the songs come when he shelves them." },
+  { href: "/writing", label: "writing", tone: "writing", whisper: "one real essay. the poem drawers are still empty." },
+  { href: "/lab", label: "build lab", tone: "lab", whisper: "scraps on the bench. nothing in there is polished." },
+  { href: "/archive", label: "archive", tone: "archive", whisper: "older things. most of the boxes are still shut." },
+  { href: "/now", label: "now", tone: "now", whisper: "the pulse. whatever he is into today." },
+  { href: "/wall", label: "the wall", tone: "wall", whisper: "his scraps, taped up. you can pin one too." },
+];
+
+export const hallway: RoomDoor[] = [
+  { href: "/", label: "hive", tone: "hive", whisper: "back to the middle of the hive." },
+  ...rooms,
+];
 
 export type Scrap = {
   id: string;

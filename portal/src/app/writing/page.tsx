@@ -10,12 +10,16 @@ export const metadata: Metadata = {
 
 export default function WritingPage() {
   return (
-    <Room name="writing" line="one real essay. the poems are still in his head.">
-      <ul className="papers">
+    <Room tone="writing" name="writing" line="one real essay. the poems are still in his head.">
+      <ul className="sheets">
         {pieces.map((piece) => (
           <li key={piece.slug}>
-            <Link href={`/writing/${piece.slug}`} className="paper piece">
-              {piece.kind === "placeholder" ? <span className="tag">placeholder</span> : <span className="tag real">essay</span>}
+            <Link href={`/writing/${piece.slug}`} className="sheet piece">
+              {piece.kind === "placeholder" ? (
+                <span className="tag">placeholder</span>
+              ) : (
+                <span className="tag real">essay</span>
+              )}
               <strong>{piece.title}</strong>
               <em>{piece.summary}</em>
             </Link>

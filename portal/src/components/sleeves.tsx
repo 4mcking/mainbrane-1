@@ -9,29 +9,38 @@ export function Sleeves() {
 
   return (
     <div>
-      <ul className="sleeve-row">
-        {sleeves.map((sleeve) => (
-          <li key={sleeve.id}>
-            <button
-              type="button"
-              className={open === sleeve.id ? "sleeve is-open" : "sleeve"}
-              aria-expanded={open === sleeve.id}
-              onClick={() => setOpen(open === sleeve.id ? null : sleeve.id)}
-            >
-              <span className="tag">placeholder</span>
-              <strong>{sleeve.title}</strong>
-              <span>pull the sleeve</span>
-            </button>
-          </li>
-        ))}
+      <ul className="records">
+        {sleeves.map((sleeve, index) => {
+          const isOpen = open === sleeve.id;
+          return (
+            <li key={sleeve.id} className={isOpen ? "record is-open" : "record"}>
+              <span className="disc" aria-hidden="true" />
+              <button
+                type="button"
+                className="sleeve"
+                aria-expanded={isOpen}
+                onClick={() => setOpen(isOpen ? null : sleeve.id)}
+              >
+                <span className="tag">placeholder</span>
+                <span className="sleeve-foot">
+                  <span className="sleeve-no" aria-hidden="true">
+                    0{index + 1}
+                  </span>
+                  <strong>{sleeve.title}</strong>
+                  <span className="sleeve-hint">{isOpen ? "slide it back" : "pull the record out"}</span>
+                </span>
+              </button>
+            </li>
+          );
+        })}
       </ul>
       {current ? (
-        <p className="drawer" role="status">
+        <p className="liner" role="status">
           <span className="tag">placeholder</span>
-          {current.note}
+          {current.title}: {current.note}
         </p>
       ) : (
-        <p className="quiet">three empty sleeves. none of these are songs yet.</p>
+        <p className="liner is-quiet">three empty sleeves. none of these are songs yet.</p>
       )}
     </div>
   );
