@@ -9,18 +9,15 @@ export const metadata: Metadata = {
 
 export default function SoundPage() {
   return (
-    <Room name="sound" line="the sleeves are here. the songs are not. yet.">
-      <article className="paper">
-        <p>
-          music is a real room in this hive. king has not put the records on
-          this shelf. these sleeves are placeholders, so the room is not
-          pretending.
-        </p>
-      </article>
+    <Room tone="sound" name="sound" line="the sleeves are here. the songs are not. yet.">
+      <p className="lede">
+        music is a real room in this hive. king has not put the records on this
+        shelf, so the sleeves are empty and say so.
+      </p>
       <Sleeves />
-      <article className="paper lyric">
+      <article className="sheet lyric">
         <span className="tag">placeholder</span>
-        <p>a few lines of a lyric would sit here, in his words, when he wants them read.</p>
+        <p>a few lines of a lyric sit here, in his words, when he wants them read.</p>
         <p className="sign">— king, later</p>
       </article>
     </Room>

@@ -9,19 +9,26 @@ export const metadata: Metadata = {
 
 export default function NowPage() {
   return (
-    <Room name="now" line="a pulse, not a status update. only what this room actually knows.">
-      <div className="now-pulse" aria-hidden="true">
-        <span className="pulse big" />
+    <Room tone="now" name="now" line="a pulse, not a status update. only what this room actually knows.">
+      <div className="now-wrap">
+        <div className="beacon" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+          <b />
+        </div>
+        <ul className="signals">
+          {now.map((item) => (
+            <li key={item.label} className={item.placeholder ? "signal is-blank" : "signal"}>
+              <span className="signal-label">
+                {item.label}
+                {item.placeholder ? <span className="tag">placeholder</span> : <span className="tag real">known</span>}
+              </span>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="now-list">
-        {now.map((item) => (
-          <li key={item.label} className="paper now-card">
-            {item.placeholder ? <span className="tag">placeholder</span> : <span className="tag real">known</span>}
-            <h2>{item.label}</h2>
-            <p>{item.text}</p>
-          </li>
-        ))}
-      </ul>
     </Room>
   );
 }

@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, Literata } from "next/font/google";
+import { Bricolage_Grotesque, Caveat, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["SOFT", "WONK", "opsz"],
-});
-
-const literata = Literata({
-  variable: "--font-literata",
+const display = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
 });
 
-const plex = IBM_Plex_Mono({
-  variable: "--font-plex",
+const body = Newsreader({
+  variable: "--font-body",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
+
+const hand = Caveat({
+  variable: "--font-hand",
+  subsets: ["latin"],
+});
+
+const mono = IBM_Plex_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
 });
@@ -32,7 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${literata.variable} ${plex.variable} h-full antialiased`}
+      className={`${display.variable} ${body.variable} ${hand.variable} ${mono.variable} h-full antialiased`}
     >
       <body>{children}</body>
     </html>

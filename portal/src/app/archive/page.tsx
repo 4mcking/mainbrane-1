@@ -9,15 +9,19 @@ export const metadata: Metadata = {
 
 export default function ArchivePage() {
   return (
-    <Room name="archive" line="older things. most of the boxes are still shut.">
-      <ul className="bench">
-        {archive.map((item) => (
-          <li key={item.id} className="paper scrap-card">
-            {item.placeholder ? <span className="tag">placeholder</span> : <span className="tag real">still up</span>}
+    <Room tone="archive" name="archive" line="older things. most of the boxes are still shut.">
+      <ul className="boxes">
+        {archive.map((item, index) => (
+          <li key={item.id} className="index-card" data-no={`mb-00${index + 1}`}>
+            {item.placeholder ? (
+              <span className="tag">placeholder</span>
+            ) : (
+              <span className="tag real">still up</span>
+            )}
             <h2>{item.title}</h2>
             <p>{item.line}</p>
             {item.href ? (
-              <a href={item.href} target="_blank" rel="noreferrer">
+              <a className="go" href={item.href} target="_blank" rel="noreferrer">
                 the earlier site
               </a>
             ) : null}
